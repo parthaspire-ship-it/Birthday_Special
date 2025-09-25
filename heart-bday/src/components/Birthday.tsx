@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import Image from "next/image";
 import HeartsBackgroundClientOnly from "./HeartsBackground";
 import EdgeBalloons from "./EdgeBalloons";
 
@@ -226,12 +227,16 @@ export default function Birthday() {
               <div className="compartmentTop">
                 {showDecor &&
                   (USE_IMAGE_FLAG ? (
-                    <img
-                      src={DECOR_IMAGE}
-                      alt="Birthday bunting"
-                      className="flagImg"
-                      draggable={false}
-                    />
+                    <div className="flagImgWrap">
+                      <Image
+                        src={DECOR_IMAGE}
+                        alt="Birthday bunting"
+                        fill
+                        priority={false}
+                        sizes="(max-width: 860px) 100vw, 860px"
+                        style={{ objectFit: "cover", objectPosition: "top center" }}
+                      />
+                    </div>
                   ) : (
                     <FlagStrip />
                   ))}
@@ -242,14 +247,18 @@ export default function Birthday() {
               <div className="compartmentBottom">
                 {showCake && (
                   <>
-                    <div className="cakeCaption">Happy Birthday Cuteeeeeee!</div>
+                    <div className="cakeCaption">Happy Birthday Bro!</div>
                     {USE_IMAGE_CAKE ? (
-                      <img
-                        src={CAKE_IMAGE}
-                        alt="Cake"
-                        className="cakeImg"
-                        draggable={false}
-                      />
+                      <div className="cakeImgWrap">
+                        <Image
+                          src={CAKE_IMAGE}
+                          alt="Cake"
+                          fill
+                          sizes="(max-width: 860px) 100vw, 860px"
+                          style={{ objectFit: "contain" }}
+                          priority={false}
+                        />
+                      </div>
                     ) : (
                       <CakeArt />
                     )}
@@ -423,16 +432,12 @@ export default function Birthday() {
           border-radius: 10px;
           background: none;
         }
-        .flagImg {
+
+        .flagImgWrap {
           position: absolute;
-          inset: 0 auto auto 0;
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          object-position: top center;
+          inset: 0;
           pointer-events: none;
           user-select: none;
-          -webkit-user-drag: none;
         }
         .flagSvg {
           position: absolute;
@@ -465,14 +470,11 @@ export default function Birthday() {
           box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
           pointer-events: none;
         }
-        .cakeImg {
+        .cakeImgWrap {
+          position: relative;
           width: 100%;
           height: 100%;
           max-width: 680px;
-          object-fit: contain;
-          pointer-events: none;
-          user-select: none;
-          -webkit-user-drag: none;
         }
 
         /* watermark */
@@ -550,7 +552,7 @@ export default function Birthday() {
   );
 }
 
-/* ------------- SVG bunting (transparent) ------------- */
+/* ----------- SVG bunting (transparent) ----------- */
 function FlagStrip() {
   const colors = ["#ff6b6b", "#ffbf3c", "#31c48d", "#3b82f6", "#a855f7"];
   const flags = Array.from({ length: 22 });
@@ -575,7 +577,7 @@ function FlagStrip() {
   );
 }
 
-/* ------------- SVG cake (transparent) ------------- */
+/* ----------- SVG cake (transparent) ----------- */
 function CakeArt() {
   return (
     <svg

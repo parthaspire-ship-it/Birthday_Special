@@ -2,9 +2,13 @@
 
 import React from "react";
 
-/** Edge balloons (uniform size & spacing, rising from the screen bottom) */
+type CSSVars = React.CSSProperties & {
+  ["--c"]?: string;
+  ["--delay"]?: string;
+  ["--dur"]?: string;
+};
+
 export default function EdgeBalloons() {
-  // left and right columns, evenly spaced like the screenshots
   const leftCols = [4, 8, 12, 16, 20];
   const rightCols = [80, 84, 88, 92, 96];
   const cols = [...leftCols, ...rightCols];
@@ -16,20 +20,15 @@ export default function EdgeBalloons() {
         const c = colors[i % colors.length];
         const delay = (i % 6) * 0.6;
         const dur = 7.8 + (i % 5) * 0.5;
-        return (
-          <div
-            key={i}
-            className="balloon"
-            style={
-              {
-                left: `${left}%`,
-                ["--c" as any]: c,
-                ["--delay" as any]: `${delay}s`,
-                ["--dur" as any]: `${dur}s`,
-              } as React.CSSProperties
-            }
-          />
-        );
+
+        const style: CSSVars = {
+          left: `${left}%`,
+          "--c": c,
+          "--delay": `${delay}s`,
+          "--dur": `${dur}s`,
+        };
+
+        return <div key={i} className="balloon" style={style} />;
       })}
     </div>
   );
