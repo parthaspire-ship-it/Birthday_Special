@@ -247,7 +247,7 @@ export default function Birthday() {
               <div className="compartmentBottom">
                 {showCake && (
                   <>
-                    <div className="cakeCaption">Happy Birthday Baby 🎂🎂😚💋</div>
+                    <div className="cakeCaption">Happy Birthday Baby😚💋</div>
                     {USE_IMAGE_CAKE ? (
                       <div className="cakeImgWrap">
                         <Image
