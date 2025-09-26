@@ -292,7 +292,7 @@ export default function Birthday() {
 
       {/* watermark */}
       <div className="watermark">
-        <span className="wmBadge">📸 @PINAKK.IO</span>
+        {/* <span className="wmBadge">📸 @PINAKK.IO</span> */}
       </div>
 
       {/* audio */}
