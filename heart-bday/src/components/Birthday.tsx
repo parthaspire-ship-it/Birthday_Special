@@ -11,7 +11,7 @@ type Stage = "intro" | "prompt" | "lightsOff" | "actions" | "final";
 /** --------- Assets (in /public) --------- */
 const DECOR_IMAGE = "/images.jpeg"; // bunting image
 const CAKE_IMAGE = "/cake.png";
-const SONG = "/happy-birthday.mp3";
+const SONG = "/happy_birthday.mp3";
 
 /** Use clean SVGs by default. Flip to true if you want to force the PNGs. */
 const USE_IMAGE_FLAG = false;
@@ -52,7 +52,7 @@ export default function Birthday() {
       const id = setTimeout(() => setIntroIndex((i) => i + 1), perLine[introIndex]);
       return () => clearTimeout(id);
     } else {
-      const id = setTimeout(() => setStage("prompt"), 1500);
+      const id = setTimeout(() => setStage("prompt"), 3500);
       return () => clearTimeout(id);
     }
   }, [stage, introIndex, introLines.length]);
@@ -247,7 +247,7 @@ export default function Birthday() {
               <div className="compartmentBottom">
                 {showCake && (
                   <>
-                    <div className="cakeCaption">Happy Birthday Baby 🎂🎂😚💋</div>
+                    <div className="cakeCaption">Happy Birthday Baby😚💋</div>
                     {USE_IMAGE_CAKE ? (
                       <div className="cakeImgWrap">
                         <Image
