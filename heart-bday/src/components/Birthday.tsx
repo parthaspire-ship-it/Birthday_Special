@@ -293,6 +293,20 @@ export default function Birthday() {
 
       {/* styles */}
       <style jsx global>{`
+        /* --- resets & sizing guards (prevent clipping on iPhone) --- */
+        *,
+        *::before,
+        *::after {
+          box-sizing: border-box;
+        }
+        html,
+        body {
+          margin: 0;
+        }
+        :root {
+          --gutter: 16px; /* consistent side padding */
+        }
+
         /* layout */
         .root {
           position: relative;
@@ -308,12 +322,15 @@ export default function Birthday() {
           display: grid;
           place-items: center;
           min-height: 100dvh;
-          padding: 24px 16px;
+          padding: 24px var(--gutter);
+          /* respect iPhone safe areas */
+          padding-left: max(var(--gutter), env(safe-area-inset-left));
+          padding-right: max(var(--gutter), env(safe-area-inset-right));
         }
 
         /* cards & buttons */
         .card {
-          width: min(720px, 92vw);
+          width: min(720px, calc(100vw - var(--gutter) * 2));
           background: #fff;
           border-radius: 18px;
           box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
@@ -370,7 +387,7 @@ export default function Birthday() {
           font-size: 16px;
         }
         .pillPink.big {
-          width: min(760px, 92vw);
+          width: min(760px, calc(100vw - var(--gutter) * 2));
           font-size: clamp(16px, 2.6vw, 20px);
           padding: 14px 26px;
           margin: 6px auto 14px;
@@ -383,7 +400,7 @@ export default function Birthday() {
         .recWrap {
           display: flex;
           justify-content: flex-end;
-          width: min(860px, 96vw);
+          width: min(860px, calc(100vw - var(--gutter) * 2));
           margin: 6px auto;
         }
         .recBtn {
@@ -418,7 +435,8 @@ export default function Birthday() {
 
         /* stage */
         .actionsWrap {
-          width: min(860px, 96vw);
+          width: min(860px, calc(100vw - var(--gutter) * 2));
+          margin-inline: auto;
         }
         .stage {
           width: 100%;
@@ -477,11 +495,11 @@ export default function Birthday() {
           max-width: 680px;
         }
 
-        /* watermark */
+        /* watermark (respect safe area) */
         .watermark {
           position: fixed;
-          left: 16px;
-          bottom: 16px;
+          left: max(16px, env(safe-area-inset-left) + 8px);
+          bottom: max(16px, env(safe-area-inset-bottom) + 8px);
           z-index: 10;
           opacity: 0.7;
           pointer-events: none;
@@ -542,9 +560,9 @@ export default function Birthday() {
           filter: blur(0.3px);
         }
         @keyframes rise {
-          0%   { transform: translate3d(0, 0, 0); opacity: 0; }
-          6%   { opacity: 1; }
-          50%  { transform: translate3d(8px, -60vh, 0); }
+          0% { transform: translate3d(0, 0, 0); opacity: 0; }
+          6% { opacity: 1; }
+          50% { transform: translate3d(8px, -60vh, 0); }
           100% { transform: translate3d(0, -120vh, 0); opacity: 0; }
         }
       `}</style>
