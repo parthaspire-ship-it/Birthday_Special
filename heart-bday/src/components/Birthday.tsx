@@ -69,8 +69,8 @@ export default function Birthday() {
   const onNext = () => {
     if (step === 0) {
       try {
-        audioRef.current?.play().catch(() => {});
-      } catch {}
+        audioRef.current?.play().catch(() => { });
+      } catch { }
     }
     if (step === 1) setShowDecor(true);
     if (step === 2) setShowBalloons(true);
@@ -80,7 +80,7 @@ export default function Birthday() {
       try {
         audioRef.current?.pause();
         if (audioRef.current) audioRef.current.currentTime = 0;
-      } catch {}
+      } catch { }
       setStage("final");
       return;
     }
@@ -97,7 +97,7 @@ export default function Birthday() {
     try {
       audioRef.current?.pause();
       if (audioRef.current) audioRef.current.currentTime = 0;
-    } catch {}
+    } catch { }
   };
 
   /* ---------------- Screen Recording (optional) ---------------- */
@@ -247,7 +247,7 @@ export default function Birthday() {
               <div className="compartmentBottom">
                 {showCake && (
                   <>
-                    <div className="cakeCaption">Happy Birthday Bro!</div>
+                    <div className="cakeCaption">Happy Birthday Baby 🎂🎂😚💋</div>
                     {USE_IMAGE_CAKE ? (
                       <div className="cakeImgWrap">
                         <Image
@@ -274,7 +274,14 @@ export default function Birthday() {
           <div className="card">
             <div className="sparkle"></div>
             <h3 className="finalText">
-              I wanted to make something special for you because you are special to me! ✨
+              Dear madam jii ,<br />
+              I am so grateful that you came in my life and made it cheesy just like your lips🥹💘.
+              I never fell for something as hard as i have fallen in your love mere pakodee😭❤️‍🩹💜
+              you are the bestest thing that happened to me in my entire life, that OC wale days made us fall for each other and all over sudden you became my crime partner , my bestie ,my tempoo and my everything🌎. life just got flipped after meeting you and there’s no going back.
+              <br /><br />
+              I love you to infinity baccchaaa♾️🫶🏻<br />
+              &amp; again Happiest birthday chu chu!💌🥂<br />
+              Muuaaahhh..😚💋<br />✨
             </h3>
             <button className="pillPurple" onClick={reset}>
               Replay
